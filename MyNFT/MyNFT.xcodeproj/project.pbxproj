@@ -8,17 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		558CEB3F2B156A9F009B7EDE /* MyNFTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558CEB3E2B156A9F009B7EDE /* MyNFTApp.swift */; };
-		558CEB412B156A9F009B7EDE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558CEB402B156A9F009B7EDE /* ContentView.swift */; };
+		558CEB412B156A9F009B7EDE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558CEB402B156A9F009B7EDE /* LoginView.swift */; };
 		558CEB432B156AA0009B7EDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558CEB422B156AA0009B7EDE /* Assets.xcassets */; };
 		558CEB462B156AA0009B7EDE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558CEB452B156AA0009B7EDE /* Preview Assets.xcassets */; };
+		558CEB502B156F45009B7EDE /* Color+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558CEB4F2B156F45009B7EDE /* Color+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		558CEB3B2B156A9F009B7EDE /* MyNFT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyNFT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		558CEB3E2B156A9F009B7EDE /* MyNFTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNFTApp.swift; sourceTree = "<group>"; };
-		558CEB402B156A9F009B7EDE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		558CEB402B156A9F009B7EDE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		558CEB422B156AA0009B7EDE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		558CEB452B156AA0009B7EDE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		558CEB4F2B156F45009B7EDE /* Color+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,8 +53,9 @@
 		558CEB3D2B156A9F009B7EDE /* MyNFT */ = {
 			isa = PBXGroup;
 			children = (
+				558CEB4E2B156EF9009B7EDE /* Extensions */,
+				558CEB4C2B156BDA009B7EDE /* Login */,
 				558CEB3E2B156A9F009B7EDE /* MyNFTApp.swift */,
-				558CEB402B156A9F009B7EDE /* ContentView.swift */,
 				558CEB422B156AA0009B7EDE /* Assets.xcassets */,
 				558CEB442B156AA0009B7EDE /* Preview Content */,
 			);
@@ -65,6 +68,30 @@
 				558CEB452B156AA0009B7EDE /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		558CEB4C2B156BDA009B7EDE /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				558CEB4D2B156BE0009B7EDE /* View */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		558CEB4D2B156BE0009B7EDE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				558CEB402B156A9F009B7EDE /* LoginView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		558CEB4E2B156EF9009B7EDE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				558CEB4F2B156F45009B7EDE /* Color+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,7 +164,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				558CEB412B156A9F009B7EDE /* ContentView.swift in Sources */,
+				558CEB412B156A9F009B7EDE /* LoginView.swift in Sources */,
+				558CEB502B156F45009B7EDE /* Color+Extension.swift in Sources */,
 				558CEB3F2B156A9F009B7EDE /* MyNFTApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
