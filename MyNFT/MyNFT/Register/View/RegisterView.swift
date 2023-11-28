@@ -28,12 +28,12 @@ struct RegisterView: View {
             .padding(.horizontal, 20)
             .padding(.bottom, 50)
         }
-        .alert("Senha incorreta", isPresented: $viewModel.isPresented) {
+        .alert(viewModel.title, isPresented: $viewModel.isPresented) {
             Button("OK") {
                 
             }
         } message: {
-            Text(viewModel.errorMessage)
+            Text(viewModel.message)
         }
         .navigationDestination(isPresented: $viewModel.goHome) {
             
@@ -52,7 +52,6 @@ struct HeadView: View {
     
     var body: some View {
 
-        
         Text("Register")
             .font(.system(size: 55, weight: .bold))
             .foregroundStyle(.white)
@@ -86,7 +85,7 @@ struct RegisterButton: View {
     
     var body: some View {
         Button {
-            
+            viewModel.registerUser()
         } label: {
             Text("Cadastrar")
                 .frame(maxWidth: .infinity)

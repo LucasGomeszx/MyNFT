@@ -14,11 +14,12 @@ class RegisterViewModel: ObservableObject {
     @Published var email: String = ""
     @Published var password: String = ""
     @Published var confirmPassword: String = ""
-    @Published var errorMessage: String = ""
+    @Published var message: String = ""
     @Published var isPresented: Bool = false
     @Published var goHome: Bool = false
+    @Published var title: String = ""
     
-    var isDisabledRegisterButton: Bool {
+    public var isDisabledRegisterButton: Bool {
          let emailValid = isValidEmail(email)
          let passwordValid = isPasswordValid(password)
          let confirmPassword = isPasswordValid(confirmPassword)
@@ -27,16 +28,37 @@ class RegisterViewModel: ObservableObject {
              !emailValid || !passwordValid || !confirmPassword
      }
      
-     func isValidEmail(_ email: String) -> Bool {
+     private func isValidEmail(_ email: String) -> Bool {
          let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}"
          let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
          return emailPredicate.evaluate(with: email)
      }
 
-     func isPasswordValid(_ password: String) -> Bool {
+     private func isPasswordValid(_ password: String) -> Bool {
          let passwordRegex = "^.{6,}$"
          let passwordPredicate = NSPredicate(format: "SELF MATCHES %@", passwordRegex)
          return passwordPredicate.evaluate(with: password)
      }
+    
+    func registerUser() {
+        
+        if password == confirmPassword {
+            Auth.auth().createUser(withEmail: email, password: password) { result, error in
+                if let error {
+                    self.title = "Erro"
+                    self.message = error.localizedDescription
+                    self.isPresented.toggle()
+                }else {
+                    self.title = "Sucesso"
+                    self.message = "Usuario cadastrado"
+                    self.isPresented.toggle()
+                }
+            }
+        } else {
+            title = "Erro"
+            message = "Senhar nao sao identicas"
+            isPresented.toggle()
+        }
+    }
     
 }
