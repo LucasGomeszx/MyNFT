@@ -39,7 +39,7 @@ struct LoginView: View {
                 RegisterView()
             }
             .navigationDestination(isPresented: $viewModel.goHome) {
-                Color.red
+                NftTabView()
             }
             .environmentObject(viewModel)
         }
