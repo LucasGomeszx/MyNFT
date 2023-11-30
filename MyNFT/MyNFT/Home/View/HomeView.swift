@@ -41,7 +41,7 @@ struct homeNftList: View {
     var body: some View {
         List(viewModel.nftList) { nft in
             NavigationLink {
-                Color.black
+                AddNftView(viewModel: AddNftViewModel(nftImageName: nft.imageName))
             } label: {
                 Image(nft.imageName)
                     .resizable()

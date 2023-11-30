@@ -9,7 +9,7 @@ import SwiftUI
 
 struct AddNftView: View {
     
-    @State var valor: String = ""
+    @StateObject var viewModel: AddNftViewModel
     
     var body: some View {
         ZStack {
@@ -23,7 +23,7 @@ struct AddNftView: View {
                     .font(.system(size: 25, weight: .bold))
                     .padding(.bottom, 30)
                 
-                Image("fox")
+                Image(viewModel.nftImageName)
                     .resizable()
                     .scaledToFill()
                     .frame(maxWidth: 300, maxHeight: 300)
@@ -38,7 +38,7 @@ struct AddNftView: View {
                     .padding(.top, 30)
                     
                 
-                TextField("", text: $valor, prompt: Text("Digite valor em $:").foregroundStyle(Color.placeholderColor))
+                TextField("", text: $viewModel.value, prompt: Text("Digite valor em $:").foregroundStyle(Color.placeholderColor))
                     .keyboardType(.decimalPad)
                     .frame(height: 40)
                     .padding(7)
@@ -57,7 +57,7 @@ struct AddNftView: View {
                 Spacer()
                 
                 Button {
-                   print(isValidDollarValue(valor))
+                    viewModel.AddNft()
                 } label: {
                     Text("Adicionar")
                         .frame(width: 180, height: 45)
@@ -72,6 +72,12 @@ struct AddNftView: View {
             }
             .padding(.top, 30)
         }
+        .alert(viewModel.alertTitle, isPresented: $viewModel.isAlertVisible) {
+            Button("OK") {
+            }
+        } message: {
+            Text(viewModel.alertErrorMessage)
+        }
         .onTapGesture {
             hideKeyboard()
         }
@@ -81,17 +87,8 @@ struct AddNftView: View {
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
     
-    func isValidDollarValue(_ value: String) -> Bool {
-        let pattern = #"^\$?\d+(\.\d{1,2})?$"#
-        let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
-        let range = NSRange(location: 0, length: value.utf16.count)
-        let matches = regex.matches(in: value, options: [], range: range)
-
-        return !matches.isEmpty
-    }
-    
 }
 
 #Preview {
-    AddNftView()
+    AddNftView(viewModel: AddNftViewModel(nftImageName: "fox"))
 }
