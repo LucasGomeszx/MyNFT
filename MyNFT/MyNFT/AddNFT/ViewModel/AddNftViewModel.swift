@@ -36,7 +36,7 @@ class AddNftViewModel: ObservableObject {
             isAlertVisible.toggle()
         }
         else {
-            let myNft = UserNftModel(imageName: nftImageName, nftValue: value)
+            let myNft = UserNftModel(nftImageName: nftImageName, nftValue: value)
             FirestoreManager.shared.addNewNft(userNftModel: myNft) { result in
                 switch result {
                 case .success(_):

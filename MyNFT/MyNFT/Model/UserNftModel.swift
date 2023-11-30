@@ -11,6 +11,6 @@ import FirebaseFirestoreSwift
 
 struct UserNftModel: Codable, Identifiable {
     var id: String = UUID().uuidString
-    var imageName: String?
+    var nftImageName: String?
     var nftValue: String?
 }

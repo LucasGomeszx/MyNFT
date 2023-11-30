@@ -43,10 +43,48 @@ struct FirestoreManager {
         let userRef = firestore.collection(CollectionKeys.user.rawValue).document(currentUserID)
         let myNft: [String: Any] = [
             "id" : userNftModel.id,
-            "nftImageName" : userNftModel.imageName ?? "",
-            "value" : userNftModel.nftValue ?? ""
+            "nftImageName" : userNftModel.nftImageName ?? "",
+            "nftValue" : userNftModel.nftValue ?? ""
         ]
         userRef.updateData(["nftList": FieldValue.arrayUnion([myNft])]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+    func getUserData(completion: @escaping (Result<User, Error>) -> Void) {
+        firestore.collection(CollectionKeys.user.rawValue).document(currentUserID).getDocument { document, error in
+            
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
+            
+            guard let document = document, document.exists else {
+                completion(.failure(NSError(domain: "FirestoreManager", code: -2, userInfo: [NSLocalizedDescriptionKey: "Documento não existe ou houve um erro"])))
+                return
+            }
+            
+            do {
+                let user = try document.data(as: User.self)
+                completion(.success(user))
+            } catch let error {
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func deleteNewNft(userNftModel: UserNftModel, completion: @escaping (Result<Void, Error>) -> Void) {
+        let userRef = firestore.collection(CollectionKeys.user.rawValue).document(currentUserID)
+        let myNft: [String: Any] = [
+            "id" : userNftModel.id,
+            "nftImageName" : userNftModel.nftImageName ?? "",
+            "nftValue" : userNftModel.nftValue ?? ""
+        ]
+        userRef.updateData(["nftList": FieldValue.arrayRemove([myNft])]) { error in
             if let error = error {
                 completion(.failure(error))
             } else {
