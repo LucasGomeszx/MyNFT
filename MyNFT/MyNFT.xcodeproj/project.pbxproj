@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		554655DF2B18C80700F440F1 /* AddNftView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554655DE2B18C80700F440F1 /* AddNftView.swift */; };
+		554655E22B18D6CC00F440F1 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554655E12B18D6CC00F440F1 /* User.swift */; };
+		554655E42B18D71C00F440F1 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 554655E32B18D71C00F440F1 /* FirebaseFirestore */; };
+		554655E62B18D7C600F440F1 /* UserNftModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554655E52B18D7C600F440F1 /* UserNftModel.swift */; };
+		554655E82B18D8A900F440F1 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554655E72B18D8A900F440F1 /* FirestoreManager.swift */; };
 		558CEB3F2B156A9F009B7EDE /* MyNFTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558CEB3E2B156A9F009B7EDE /* MyNFTApp.swift */; };
 		558CEB412B156A9F009B7EDE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558CEB402B156A9F009B7EDE /* LoginView.swift */; };
 		558CEB432B156AA0009B7EDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558CEB422B156AA0009B7EDE /* Assets.xcassets */; };
@@ -25,6 +30,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		554655DE2B18C80700F440F1 /* AddNftView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNftView.swift; sourceTree = "<group>"; };
+		554655E12B18D6CC00F440F1 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		554655E52B18D7C600F440F1 /* UserNftModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNftModel.swift; sourceTree = "<group>"; };
+		554655E72B18D8A900F440F1 /* FirestoreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirestoreManager.swift; sourceTree = "<group>"; };
 		558CEB3B2B156A9F009B7EDE /* MyNFT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyNFT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		558CEB3E2B156A9F009B7EDE /* MyNFTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyNFTApp.swift; sourceTree = "<group>"; };
 		558CEB402B156A9F009B7EDE /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -48,12 +57,45 @@
 			buildActionMask = 2147483647;
 			files = (
 				558CEB602B1578B3009B7EDE /* FirebaseAuth in Frameworks */,
+				554655E42B18D71C00F440F1 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		554655DB2B18C7CE00F440F1 /* AddNFT */ = {
+			isa = PBXGroup;
+			children = (
+				554655DD2B18C7E700F440F1 /* ViewModel */,
+				554655DC2B18C7E200F440F1 /* View */,
+			);
+			path = AddNFT;
+			sourceTree = "<group>";
+		};
+		554655DC2B18C7E200F440F1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				554655DE2B18C80700F440F1 /* AddNftView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		554655DD2B18C7E700F440F1 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		554655E02B18D42300F440F1 /* Firebase */ = {
+			isa = PBXGroup;
+			children = (
+				554655E72B18D8A900F440F1 /* FirestoreManager.swift */,
+			);
+			path = Firebase;
+			sourceTree = "<group>";
+		};
 		558CEB322B156A9F009B7EDE = {
 			isa = PBXGroup;
 			children = (
@@ -74,8 +116,10 @@
 		558CEB3D2B156A9F009B7EDE /* MyNFT */ = {
 			isa = PBXGroup;
 			children = (
+				554655E02B18D42300F440F1 /* Firebase */,
 				55B887572B1825CB00DE7D84 /* Model */,
 				558CEB4E2B156EF9009B7EDE /* Extensions */,
+				554655DB2B18C7CE00F440F1 /* AddNFT */,
 				55A548472B16BBC7008ABC4C /* NftList */,
 				55A548462B16BBA6008ABC4C /* Home */,
 				55A548422B16B1C3008ABC4C /* NftTabView */,
@@ -223,6 +267,8 @@
 			isa = PBXGroup;
 			children = (
 				55B887582B1825DB00DE7D84 /* NftModel.swift */,
+				554655E12B18D6CC00F440F1 /* User.swift */,
+				554655E52B18D7C600F440F1 /* UserNftModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -245,6 +291,7 @@
 			name = MyNFT;
 			packageProductDependencies = (
 				558CEB5F2B1578B3009B7EDE /* FirebaseAuth */,
+				554655E32B18D71C00F440F1 /* FirebaseFirestore */,
 			);
 			productName = MyNFT;
 			productReference = 558CEB3B2B156A9F009B7EDE /* MyNFT.app */;
@@ -304,9 +351,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				554655E22B18D6CC00F440F1 /* User.swift in Sources */,
 				558CEB412B156A9F009B7EDE /* LoginView.swift in Sources */,
 				558CEB672B157E83009B7EDE /* RegisterViewModel.swift in Sources */,
 				55A5484F2B16BE34008ABC4C /* NftListView.swift in Sources */,
+				554655DF2B18C80700F440F1 /* AddNftView.swift in Sources */,
 				55A548522B16D3F9008ABC4C /* HomeViewModel.swift in Sources */,
 				55A548412B16A9F4008ABC4C /* LoginViewModel.swift in Sources */,
 				558CEB642B157C2A009B7EDE /* RegisterView.swift in Sources */,
@@ -315,6 +364,8 @@
 				55A5484C2B16BC0B008ABC4C /* HomeView.swift in Sources */,
 				558CEB502B156F45009B7EDE /* Color+Extension.swift in Sources */,
 				558CEB3F2B156A9F009B7EDE /* MyNFTApp.swift in Sources */,
+				554655E62B18D7C600F440F1 /* UserNftModel.swift in Sources */,
+				554655E82B18D8A900F440F1 /* FirestoreManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -533,6 +584,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		554655E32B18D71C00F440F1 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 558CEB532B15789F009B7EDE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
 		558CEB5F2B1578B3009B7EDE /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 558CEB532B15789F009B7EDE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
