@@ -10,40 +10,53 @@ import SwiftUI
 struct HomeView: View {
     
     @StateObject var viewModel: HomeViewModel = HomeViewModel()
-    @State var nftList: [NftModel] = [NftModel(imageName: "robo"),NftModel(imageName: "robo2"),NftModel(imageName: "robo2"),NftModel(imageName: "fish")]
     
     var body: some View {
         ZStack {
             
             Color.backgroundColor.ignoresSafeArea()
             
-            
             VStack {
                 
-                Text("Meus NFTs")
-                    .foregroundStyle(.white)
-                    .font(.title)
+                titleText()
                 
-                List(viewModel.nftList) { nft in
-                    NavigationLink {
-                        Color.black
-                    } label: {
-                        Image(nft.imageName)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 150, height: 150)
-                            .clipShape(RoundedRectangle(cornerRadius: 25.0))
-                            .overlay(RoundedRectangle(cornerRadius: 25.0)
-                                .stroke(Color.white, lineWidth: 2.0)  )
-                            .shadow(radius: 20)
-                        
-                    }
-                    .listRowSeparator(.hidden)
-                    .listRowBackground(Color.buttonColor)
-                }
-                .scrollContentBackground(.hidden)
+                homeNftList()
+
             }
         }
+        .environmentObject(viewModel)
+    }
+}
+
+struct titleText: View {
+    var body: some View {
+        Text("Meus NFTs")
+            .foregroundStyle(.white)
+            .font(.title)
+    }
+}
+
+struct homeNftList: View {
+    @EnvironmentObject var viewModel: HomeViewModel
+    var body: some View {
+        List(viewModel.nftList) { nft in
+            NavigationLink {
+                Color.black
+            } label: {
+                Image(nft.imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: 150, height: 150)
+                    .clipShape(RoundedRectangle(cornerRadius: 25.0))
+                    .overlay(RoundedRectangle(cornerRadius: 25.0)
+                        .stroke(Color.white, lineWidth: 2.0)  )
+                    .shadow(radius: 20)
+                
+            }
+            .listRowSeparator(.hidden)
+            .listRowBackground(Color.buttonColor)
+        }
+        .scrollContentBackground(.hidden)
     }
 }
 

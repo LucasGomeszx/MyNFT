@@ -20,4 +20,6 @@ class HomeViewModel: ObservableObject {
                                           NftModel(imageName: "robo2"),
                                           NftModel(imageName: "ship")]
     
+    
+    
 }
