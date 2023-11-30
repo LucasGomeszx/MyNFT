@@ -20,7 +20,7 @@ class AddNftViewModel: ObservableObject {
         self.nftImageName = nftImageName
     }
     
-    func isValidDollarValue(_ value: String) -> Bool {
+    private func isValidDollarValue(_ value: String) -> Bool {
         let pattern = #"^\$?\d+(\.\d{1,2})?$"#
         let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
         let range = NSRange(location: 0, length: value.utf16.count)
@@ -36,8 +36,22 @@ class AddNftViewModel: ObservableObject {
             isAlertVisible.toggle()
         }
         else {
-            print("ADICIONADO A LISTA")
+            let myNft = UserNftModel(imageName: nftImageName, nftValue: value)
+            FirestoreManager.shared.addNewNft(userNftModel: myNft) { result in
+                switch result {
+                case .success(_):
+                    self.alertTitle = "Sucesso"
+                    self.alertErrorMessage = "NFT salvo."
+                    self.isAlertVisible.toggle()
+                case .failure(_):
+                    self.alertTitle = "Erro"
+                    self.alertErrorMessage = "Erro ao adicionar NFT"
+                    self.isAlertVisible.toggle()
+                }
+            }
         }
     }
+    
+    
     
 }

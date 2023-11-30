@@ -67,7 +67,6 @@ struct AddNftView: View {
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
 
-                
                 Spacer()
             }
             .padding(.top, 30)

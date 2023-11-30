@@ -13,6 +13,7 @@
 		554655E62B18D7C600F440F1 /* UserNftModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554655E52B18D7C600F440F1 /* UserNftModel.swift */; };
 		554655E82B18D8A900F440F1 /* FirestoreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554655E72B18D8A900F440F1 /* FirestoreManager.swift */; };
 		554655EA2B18E3D600F440F1 /* AddNftViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 554655E92B18E3D600F440F1 /* AddNftViewModel.swift */; };
+		554655EC2B18F27A00F440F1 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 554655EB2B18F27A00F440F1 /* FirebaseFirestoreSwift */; };
 		558CEB3F2B156A9F009B7EDE /* MyNFTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558CEB3E2B156A9F009B7EDE /* MyNFTApp.swift */; };
 		558CEB412B156A9F009B7EDE /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 558CEB402B156A9F009B7EDE /* LoginView.swift */; };
 		558CEB432B156AA0009B7EDE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 558CEB422B156AA0009B7EDE /* Assets.xcassets */; };
@@ -60,6 +61,7 @@
 			files = (
 				558CEB602B1578B3009B7EDE /* FirebaseAuth in Frameworks */,
 				554655E42B18D71C00F440F1 /* FirebaseFirestore in Frameworks */,
+				554655EC2B18F27A00F440F1 /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,6 +297,7 @@
 			packageProductDependencies = (
 				558CEB5F2B1578B3009B7EDE /* FirebaseAuth */,
 				554655E32B18D71C00F440F1 /* FirebaseFirestore */,
+				554655EB2B18F27A00F440F1 /* FirebaseFirestoreSwift */,
 			);
 			productName = MyNFT;
 			productReference = 558CEB3B2B156A9F009B7EDE /* MyNFT.app */;
@@ -592,6 +595,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 558CEB532B15789F009B7EDE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseFirestore;
+		};
+		554655EB2B18F27A00F440F1 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 558CEB532B15789F009B7EDE /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
 		};
 		558CEB5F2B1578B3009B7EDE /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -9,6 +9,10 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
+enum CollectionKeys: String {
+    case user
+}
+
 struct FirestoreManager {
     
     static let shared = FirestoreManager()
@@ -35,6 +39,20 @@ struct FirestoreManager {
         }
     }
     
-    
+    func addNewNft(userNftModel: UserNftModel, completion: @escaping (Result<Void, Error>) -> Void) {
+        let userRef = firestore.collection(CollectionKeys.user.rawValue).document(currentUserID)
+        let myNft: [String: Any] = [
+            "id" : userNftModel.id,
+            "nftImageName" : userNftModel.imageName ?? "",
+            "value" : userNftModel.nftValue ?? ""
+        ]
+        userRef.updateData(["nftList": FieldValue.arrayUnion([myNft])]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
     
 }
