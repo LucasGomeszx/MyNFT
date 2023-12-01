@@ -10,7 +10,7 @@ import FirebaseAuth
 import FirebaseFirestore
 
 enum CollectionKeys: String {
-    case user
+    case users
 }
 
 struct FirestoreManager {
@@ -30,7 +30,7 @@ struct FirestoreManager {
     
     func createUser(completion: @escaping (Error?) -> Void) {
         let user = User(id: currentUserID, nftList: [])
-        let userCollection = firestore.collection("user")
+        let userCollection = firestore.collection(CollectionKeys.users.rawValue)
         do {
             try userCollection.document(currentUserID).setData(from: user)
             completion(nil)
@@ -39,24 +39,8 @@ struct FirestoreManager {
         }
     }
     
-    func addNewNft(userNftModel: UserNftModel, completion: @escaping (Result<Void, Error>) -> Void) {
-        let userRef = firestore.collection(CollectionKeys.user.rawValue).document(currentUserID)
-        let myNft: [String: Any] = [
-            "id" : userNftModel.id,
-            "nftImageName" : userNftModel.nftImageName ?? "",
-            "nftValue" : userNftModel.nftValue ?? ""
-        ]
-        userRef.updateData(["nftList": FieldValue.arrayUnion([myNft])]) { error in
-            if let error = error {
-                completion(.failure(error))
-            } else {
-                completion(.success(()))
-            }
-        }
-    }
-    
     func getUserData(completion: @escaping (Result<User, Error>) -> Void) {
-        firestore.collection(CollectionKeys.user.rawValue).document(currentUserID).getDocument { document, error in
+        firestore.collection(CollectionKeys.users.rawValue).document(currentUserID).getDocument { document, error in
             
             if let error = error {
                 completion(.failure(error))
@@ -78,7 +62,7 @@ struct FirestoreManager {
     }
     
     func deleteNewNft(userNftModel: UserNftModel, completion: @escaping (Result<Void, Error>) -> Void) {
-        let userRef = firestore.collection(CollectionKeys.user.rawValue).document(currentUserID)
+        let userRef = firestore.collection(CollectionKeys.users.rawValue).document(currentUserID)
         let myNft: [String: Any] = [
             "id" : userNftModel.id,
             "nftImageName" : userNftModel.nftImageName ?? "",
@@ -92,5 +76,57 @@ struct FirestoreManager {
             }
         }
     }
+    
+    func addNewNft(userNft: UserNftModel, completion: @escaping (Result<Void, Error>) -> Void) {
+        let userRef = firestore.collection(CollectionKeys.users.rawValue).document(currentUserID)
+        let myNft: [String: Any] = [
+            "id" : userNft.id,
+            "nftImageName" : userNft.nftImageName ?? "",
+            "nftValue" : userNft.nftValue ?? ""
+        ]
+        userRef.updateData(["nftList": FieldValue.arrayUnion([myNft])]) { error in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                completion(.success(()))
+            }
+        }
+    }
+    
+    private func getNewNftList(userNft: UserNftModel, completion: @escaping (Result<[UserNftModel], Error>) -> Void) {
+        getUserData { result in
+            switch result {
+            case .success(let user):
+                
+                let newNftList = (user.nftList?.map { $0.id == userNft.id ? userNft : $0 }) ?? []
+                
+                completion(.success((newNftList)))
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
+        }
+    }
+
+    
+    func updateNftList(userNft: UserNftModel, completion: @escaping (Result<Void, Error>) -> Void) {
+        let userRef = firestore.collection(CollectionKeys.users.rawValue).document(currentUserID)
+
+        getNewNftList(userNft: userNft) { result in
+            switch result {
+            case .success(let newList):
+                let userNftDictionaryArray = newList.map { $0.toDictionary() }
+                userRef.updateData(["nftList": userNftDictionaryArray]) { error in
+                    if let error = error {
+                        completion(.failure(error))
+                    } else {
+                        completion(.success(()))
+                    }
+                }
+            case .failure(let failure):
+                completion(.failure(failure))
+            }
+        }
+    }
+    
     
 }

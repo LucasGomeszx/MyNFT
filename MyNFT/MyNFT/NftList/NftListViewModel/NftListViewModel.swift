@@ -15,7 +15,6 @@ class NftListViewModel: ObservableObject {
         FirestoreManager.shared.getUserData { result in
             switch result {
             case .success(let success):
-                print(success)
                 self.nftList = success.nftList ?? []
             case .failure(_):
                 break
@@ -26,9 +25,9 @@ class NftListViewModel: ObservableObject {
     func removeNft(userNft: UserNftModel) {
         FirestoreManager.shared.deleteNewNft(userNftModel: userNft) { result in
             switch result {
-            case .success(let success):
+            case .success(_):
                 self.getUserNftList()
-            case .failure(let failure):
+            case .failure(_):
                 break
             }
         }

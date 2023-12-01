@@ -37,15 +37,15 @@ class AddNftViewModel: ObservableObject {
         }
         else {
             let myNft = UserNftModel(nftImageName: nftImageName, nftValue: value)
-            FirestoreManager.shared.addNewNft(userNftModel: myNft) { result in
+            FirestoreManager.shared.addNewNft(userNft: myNft) { result in
                 switch result {
                 case .success(_):
                     self.alertTitle = "Sucesso"
                     self.alertErrorMessage = "NFT salvo."
                     self.isAlertVisible.toggle()
-                case .failure(_):
+                case .failure(let error):
                     self.alertTitle = "Erro"
-                    self.alertErrorMessage = "Erro ao adicionar NFT"
+                    self.alertErrorMessage = error.localizedDescription
                     self.isAlertVisible.toggle()
                 }
             }

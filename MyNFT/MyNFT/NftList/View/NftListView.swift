@@ -17,7 +17,7 @@ struct NftListView: View {
             VStack {
                 List($viewModel.nftList) { $nft in
                     NavigationLink {
-                        Color.red
+                        NftDetailView(userNft: $nft)
                     } label: {
                         HStack {
                             Image(nft.nftImageName ?? "")
