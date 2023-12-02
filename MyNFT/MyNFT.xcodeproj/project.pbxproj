@@ -31,6 +31,7 @@
 		55A5484F2B16BE34008ABC4C /* NftListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A5484E2B16BE34008ABC4C /* NftListView.swift */; };
 		55A548522B16D3F9008ABC4C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A548512B16D3F9008ABC4C /* HomeViewModel.swift */; };
 		55B887592B1825DB00DE7D84 /* NftModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B887582B1825DB00DE7D84 /* NftModel.swift */; };
+		55C7E1612B1ABE74007A44DB /* NftDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7E1602B1ABE74007A44DB /* NftDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		55A5484E2B16BE34008ABC4C /* NftListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NftListView.swift; sourceTree = "<group>"; };
 		55A548512B16D3F9008ABC4C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		55B887582B1825DB00DE7D84 /* NftModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NftModel.swift; sourceTree = "<group>"; };
+		55C7E1602B1ABE74007A44DB /* NftDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NftDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 		5542755B2B192E1600B8A408 /* NftDetail */ = {
 			isa = PBXGroup;
 			children = (
+				55C7E15F2B1ABE5D007A44DB /* ViewModel */,
 				5542755C2B192E1E00B8A408 /* NftDetailView */,
 			);
 			path = NftDetail;
@@ -308,6 +311,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		55C7E15F2B1ABE5D007A44DB /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				55C7E1602B1ABE74007A44DB /* NftDetailViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -398,6 +409,7 @@
 				5542755E2B192E3000B8A408 /* NftDetailView.swift in Sources */,
 				558CEB642B157C2A009B7EDE /* RegisterView.swift in Sources */,
 				55B887592B1825DB00DE7D84 /* NftModel.swift in Sources */,
+				55C7E1612B1ABE74007A44DB /* NftDetailViewModel.swift in Sources */,
 				55A548452B16B1DD008ABC4C /* NftTabView.swift in Sources */,
 				55A5484C2B16BC0B008ABC4C /* HomeView.swift in Sources */,
 				558CEB502B156F45009B7EDE /* Color+Extension.swift in Sources */,

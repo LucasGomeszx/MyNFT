@@ -65,8 +65,8 @@ struct FirestoreManager {
         let userRef = firestore.collection(CollectionKeys.users.rawValue).document(currentUserID)
         let myNft: [String: Any] = [
             "id" : userNftModel.id,
-            "nftImageName" : userNftModel.nftImageName ?? "",
-            "nftValue" : userNftModel.nftValue ?? ""
+            "nftImageName" : userNftModel.nftImageName,
+            "nftValue" : userNftModel.nftValue
         ]
         userRef.updateData(["nftList": FieldValue.arrayRemove([myNft])]) { error in
             if let error = error {
@@ -81,8 +81,8 @@ struct FirestoreManager {
         let userRef = firestore.collection(CollectionKeys.users.rawValue).document(currentUserID)
         let myNft: [String: Any] = [
             "id" : userNft.id,
-            "nftImageName" : userNft.nftImageName ?? "",
-            "nftValue" : userNft.nftValue ?? ""
+            "nftImageName" : userNft.nftImageName,
+            "nftValue" : userNft.nftValue
         ]
         userRef.updateData(["nftList": FieldValue.arrayUnion([myNft])]) { error in
             if let error = error {

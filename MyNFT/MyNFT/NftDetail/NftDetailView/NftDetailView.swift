@@ -9,12 +9,10 @@ import SwiftUI
 
 struct NftDetailView: View {
     
-    @Binding var userNft: UserNftModel
-    @State var userNftState: UserNftModel
+    @StateObject var viewModel: NftDetailViewModel
     
-    init(userNft: Binding<UserNftModel>) {
-        _userNft = userNft
-        _userNftState = State(wrappedValue: userNft.wrappedValue)
+    init(userNft: UserNftModel) {
+        _viewModel = StateObject(wrappedValue: NftDetailViewModel(userNft: userNft))
     }
     
     var body: some View {
@@ -24,7 +22,7 @@ struct NftDetailView: View {
             
             VStack {
                 
-                Image(userNft.nftImageName)
+                Image(viewModel.userNft.nftImageName)
                     .resizable()
                     .scaledToFill()
                     .frame(maxWidth: 250, maxHeight: 250)
@@ -35,15 +33,15 @@ struct NftDetailView: View {
                     .padding(.top, 20)
                 
                 HStack(alignment: .center) {
-                    Spacer()
-                    
+
                     Text("Valor: ")
                         .foregroundStyle(.white)
                         .font(.system(size: 20, weight: .semibold))
                         .padding(.top, 10)
                         .padding(.bottom, 10)
                     
-                    TextField("", text: $userNftState.nftValue )
+                    TextField("", text: $viewModel.userNftState.nftValue )
+                        .keyboardType(.decimalPad)
                         .padding(.leading, 10)
                         .font(.system(size: 20))
                         .foregroundColor(.white)
@@ -53,7 +51,6 @@ struct NftDetailView: View {
                         })
                         .background(Color.buttonColor)
                     
-                    Spacer()
                 }
                 
                 Text("Seu NFT em outras moedas.")
@@ -67,20 +64,34 @@ struct NftDetailView: View {
                 .padding(.trailing, 20)
                 
                 Button {
-                    
+                    viewModel.updateUserNft()
                 } label: {
-                    Text("Atualizar")
-                        .frame(width: 180, height: 45)
-                        .foregroundStyle(.white)
+                    Text("Alterar")
+                        .frame(maxWidth: 200)
+                        .frame(height: 45)
+                        .foregroundStyle(!viewModel.isDiferrent ? Color.white : Color.white.opacity(0.4))
                         .font(.system(size: 18, weight: .bold))
-                        .background(Color.buttonColor)
+                        .background(!viewModel.isDiferrent ? Color.buttonColor : Color.buttonColor.opacity(0.4))
                         .clipShape(RoundedRectangle(cornerRadius: 8))
                 }
-                .padding()
+                .disabled(viewModel.isDiferrent)
                 
                 Spacer()
             }
         }
+        .alert(viewModel.alertTitle, isPresented: $viewModel.isAlertVisible) {
+            Button("OK") {
+            }
+        } message: {
+            Text(viewModel.alertErrorMessage)
+        }
+        .onTapGesture {
+            hideKeyboard()
+        }
+    }
+    
+    private func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
     
 }
@@ -88,5 +99,5 @@ struct NftDetailView: View {
 #Preview {
     @State var userNft: UserNftModel = UserNftModel(id: "aaaa", nftImageName: "fox", nftValue: "5000")
     
-    return NftDetailView(userNft: $userNft)
+    return NftDetailView(userNft: userNft)
 }

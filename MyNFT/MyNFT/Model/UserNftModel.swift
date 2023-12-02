@@ -9,7 +9,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseFirestoreSwift
 
-struct UserNftModel: Codable, Identifiable {
+struct UserNftModel: Codable, Identifiable, Comparable {
     var id: String = UUID().uuidString
     var nftImageName: String
     var nftValue: String
@@ -17,5 +17,10 @@ struct UserNftModel: Codable, Identifiable {
     func toDictionary() -> [String: Any] {
         return ["id": self.id, "nftImageName": self.nftImageName, "nftValue": self.nftValue]
     }
+    
+    static func < (lhs: UserNftModel, rhs: UserNftModel) -> Bool {
+        lhs.nftValue == rhs.nftValue
+    }
+    
     
 }
