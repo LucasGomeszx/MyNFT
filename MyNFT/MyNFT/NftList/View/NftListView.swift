@@ -20,7 +20,7 @@ struct NftListView: View {
                         NftDetailView(userNft: $nft)
                     } label: {
                         HStack {
-                            Image(nft.nftImageName ?? "")
+                            Image(nft.nftImageName)
                                 .resizable()
                                 .aspectRatio(contentMode: .fill)
                                 .frame(width: 150, height: 150)
@@ -29,7 +29,7 @@ struct NftListView: View {
                                     .stroke(Color.white, lineWidth: 2.0)  )
                                 .shadow(radius: 10)
                             
-                            Text("Valor : $\(nft.nftValue ?? "")")
+                            Text("Valor : $\(nft.nftValue)")
                                 .foregroundStyle(.white)
                             
                                 .swipeActions {
