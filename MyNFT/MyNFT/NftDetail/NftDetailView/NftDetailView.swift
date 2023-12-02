@@ -58,10 +58,17 @@ struct NftDetailView: View {
                     .font(.system(size: 20, weight: .bold))
                 
                 List {
-                    
+                    Group {
+                        NftDetailCell()
+                            
+                        NftDetailCell()
+                        
+                        NftDetailCell()
+                    }
+                    .listRowSeparator(.hidden)
+                    .listRowBackground(Color.clear)
                 }
-                .padding(.leading, 20)
-                .padding(.trailing, 20)
+                .scrollContentBackground(.hidden)
                 
                 Button {
                     viewModel.updateUserNft()

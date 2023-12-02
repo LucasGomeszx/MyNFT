@@ -32,6 +32,7 @@
 		55A548522B16D3F9008ABC4C /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55A548512B16D3F9008ABC4C /* HomeViewModel.swift */; };
 		55B887592B1825DB00DE7D84 /* NftModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B887582B1825DB00DE7D84 /* NftModel.swift */; };
 		55C7E1612B1ABE74007A44DB /* NftDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7E1602B1ABE74007A44DB /* NftDetailViewModel.swift */; };
+		55C7E1642B1ACD8F007A44DB /* NftDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7E1632B1ACD8F007A44DB /* NftDetailCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		55A548512B16D3F9008ABC4C /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		55B887582B1825DB00DE7D84 /* NftModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NftModel.swift; sourceTree = "<group>"; };
 		55C7E1602B1ABE74007A44DB /* NftDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NftDetailViewModel.swift; sourceTree = "<group>"; };
+		55C7E1632B1ACD8F007A44DB /* NftDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NftDetailCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		5542755B2B192E1600B8A408 /* NftDetail */ = {
 			isa = PBXGroup;
 			children = (
+				55C7E1622B1ACD80007A44DB /* Cell */,
 				55C7E15F2B1ABE5D007A44DB /* ViewModel */,
 				5542755C2B192E1E00B8A408 /* NftDetailView */,
 			);
@@ -319,6 +322,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		55C7E1622B1ACD80007A44DB /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				55C7E1632B1ACD8F007A44DB /* NftDetailCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -399,6 +410,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				554655E22B18D6CC00F440F1 /* User.swift in Sources */,
+				55C7E1642B1ACD8F007A44DB /* NftDetailCell.swift in Sources */,
 				558CEB412B156A9F009B7EDE /* LoginView.swift in Sources */,
 				558CEB672B157E83009B7EDE /* RegisterViewModel.swift in Sources */,
 				55A5484F2B16BE34008ABC4C /* NftListView.swift in Sources */,
