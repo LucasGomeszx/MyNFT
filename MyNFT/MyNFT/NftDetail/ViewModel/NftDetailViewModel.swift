@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import Combine
 
 class NftDetailViewModel: ObservableObject {
     
@@ -15,6 +16,10 @@ class NftDetailViewModel: ObservableObject {
     @Published var isAlertVisible: Bool = false
     @Published var alertTitle: String = ""
     @Published var alertErrorMessage: String = ""
+    @Published var criptoModel: CriptoModel = CriptoModel(usd: [:])
+    @Published var criptoImageNames: [String] = ["btc", "eth", "bnb"]
+    private var service: Service = Service<CriptoModel>()
+    private var cancellable: Set<AnyCancellable> = []
     
     init(userNft: UserNftModel) {
         self.userNft = userNft
@@ -30,7 +35,6 @@ class NftDetailViewModel: ObservableObject {
         let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
         let range = NSRange(location: 0, length: value.utf16.count)
         let matches = regex.matches(in: value, options: [], range: range)
-        
         return !matches.isEmpty
     }
     
@@ -54,9 +58,24 @@ class NftDetailViewModel: ObservableObject {
                     self.isAlertVisible.toggle()
                 }
             }
-
-            
         }
+    }
+    
+    public func fetchData() {
+        let url = "https://api.coingecko.com/api/v3/simple/price?ids=usd&vs_currencies=btc,eth,bnb"
+        service.request(url)
+            .sink(receiveCompletion: { completion in
+                switch completion {
+                case .finished:
+                    break
+                case .failure(let error):
+                    print(error)
+                }
+            }, receiveValue: { result in
+                self.criptoModel = result
+                print(self.criptoModel)
+            })
+            .store(in: &cancellable)
     }
     
 }

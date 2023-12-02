@@ -33,7 +33,7 @@ struct NftDetailView: View {
                     .padding(.top, 20)
                 
                 HStack(alignment: .center) {
-
+                    
                     Text("Valor: ")
                         .foregroundStyle(.white)
                         .font(.system(size: 20, weight: .semibold))
@@ -59,16 +59,18 @@ struct NftDetailView: View {
                 
                 List {
                     Group {
-                        NftDetailCell()
-                            
-                        NftDetailCell()
-                        
-                        NftDetailCell()
+                        NftDetailCell(criptoValue: $viewModel.criptoModel.usd["btc"] , nftValur: $viewModel.userNftState.nftValue, imageName: $viewModel.criptoImageNames[0])
+                        NftDetailCell(criptoValue: $viewModel.criptoModel.usd["bnb"] , nftValur: $viewModel.userNftState.nftValue, imageName: $viewModel.criptoImageNames[1])
+                        NftDetailCell(criptoValue: $viewModel.criptoModel.usd["eth"] , nftValur: $viewModel.userNftState.nftValue, imageName: $viewModel.criptoImageNames[2])
                     }
+                    .frame(height: 100)
                     .listRowSeparator(.hidden)
-                    .listRowBackground(Color.clear)
+                    .listRowBackground(Color.buttonColor)
+
                 }
                 .scrollContentBackground(.hidden)
+    
+                Spacer()
                 
                 Button {
                     viewModel.updateUserNft()
@@ -95,6 +97,9 @@ struct NftDetailView: View {
         .onTapGesture {
             hideKeyboard()
         }
+        .onAppear {
+            viewModel.fetchData()
+        }
     }
     
     private func hideKeyboard() {
@@ -104,7 +109,7 @@ struct NftDetailView: View {
 }
 
 #Preview {
-    @State var userNft: UserNftModel = UserNftModel(id: "aaaa", nftImageName: "fox", nftValue: "5000")
+    @State var userNft: UserNftModel = UserNftModel(id: "aaaa", nftImageName: "fox", nftValue: "200")
     
     return NftDetailView(userNft: userNft)
 }

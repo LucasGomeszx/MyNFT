@@ -9,44 +9,33 @@ import SwiftUI
 
 struct NftDetailCell: View {
     
+    @Binding var criptoValue: Double?
+    @Binding var nftValur: String
+    @Binding var imageName: String
+    
     var body: some View {
         ZStack {
-            Color.buttonColor.ignoresSafeArea()
+            Color.clear.ignoresSafeArea()
             
             HStack {
                 
-                Image("klv")
+                Image(imageName)
                     .resizable()
                     .frame(width: 35, height: 35)
                     .clipShape(RoundedRectangle(cornerRadius: 25.0))
                     .overlay(RoundedRectangle(cornerRadius: 25.0)
                         .stroke(Color.white, lineWidth: 1.0)  )
                 
-                Text("KLV")
+                Text(imageName)
                     .font(.system(size: 15, weight: .bold))
                     .foregroundStyle(.white)
                     .padding(.leading, 10)
                 
                 Spacer()
                 
-                Text("$ 0.0004")
+                Text("= \(convertCripto())")
                     .font(.system(size: 15, weight: .bold))
                     .foregroundStyle(.white)
-                    .frame(width: 100)
-                    
-                Spacer()
-                
-                VStack {
-                    Text("$")
-                        .font(.system(size: 15, weight: .bold))
-                    .foregroundStyle(.white)
-                    
-                    Text("= 0.8765")
-                        .font(.system(size: 12, weight: .bold))
-                    .foregroundStyle(.white)
-                    .frame(width: 70)
-                }
-                
                 
             }
             .padding()
@@ -56,8 +45,19 @@ struct NftDetailCell: View {
             .stroke(Color.white, lineWidth: 1.0))
     }
     
+    private func convertCripto() -> String {
+        let nftValue = Double(nftValur)
+        guard let nftValue = nftValue else {return ""}
+        let value = nftValue * (criptoValue ?? 0)
+        let formattedValue = String(format: "%.5f", value)
+        return formattedValue
+    }
+    
 }
 
 #Preview {
-    NftDetailCell()
+    @State var criptoValue: Double? = 10
+    @State var nftValue: String = "5000"
+    @State var imageName: String = "btc"
+    return NftDetailCell(criptoValue: $criptoValue, nftValur: $nftValue, imageName: $imageName)
 }

@@ -33,6 +33,9 @@
 		55B887592B1825DB00DE7D84 /* NftModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B887582B1825DB00DE7D84 /* NftModel.swift */; };
 		55C7E1612B1ABE74007A44DB /* NftDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7E1602B1ABE74007A44DB /* NftDetailViewModel.swift */; };
 		55C7E1642B1ACD8F007A44DB /* NftDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7E1632B1ACD8F007A44DB /* NftDetailCell.swift */; };
+		55C7E1692B1B5F48007A44DB /* NetworkHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7E1682B1B5F48007A44DB /* NetworkHandle.swift */; };
+		55C7E16B2B1B5F53007A44DB /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7E16A2B1B5F53007A44DB /* Service.swift */; };
+		55C7E16D2B1B6288007A44DB /* CriptoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55C7E16C2B1B6288007A44DB /* CriptoModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +63,9 @@
 		55B887582B1825DB00DE7D84 /* NftModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NftModel.swift; sourceTree = "<group>"; };
 		55C7E1602B1ABE74007A44DB /* NftDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NftDetailViewModel.swift; sourceTree = "<group>"; };
 		55C7E1632B1ACD8F007A44DB /* NftDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NftDetailCell.swift; sourceTree = "<group>"; };
+		55C7E1682B1B5F48007A44DB /* NetworkHandle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHandle.swift; sourceTree = "<group>"; };
+		55C7E16A2B1B5F53007A44DB /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		55C7E16C2B1B6288007A44DB /* CriptoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriptoModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +153,7 @@
 		558CEB3D2B156A9F009B7EDE /* MyNFT */ = {
 			isa = PBXGroup;
 			children = (
+				55C7E1672B1B5F3A007A44DB /* Service */,
 				554655E02B18D42300F440F1 /* Firebase */,
 				55B887572B1825CB00DE7D84 /* Model */,
 				558CEB4E2B156EF9009B7EDE /* Extensions */,
@@ -310,6 +317,7 @@
 				55B887582B1825DB00DE7D84 /* NftModel.swift */,
 				554655E12B18D6CC00F440F1 /* User.swift */,
 				554655E52B18D7C600F440F1 /* UserNftModel.swift */,
+				55C7E16C2B1B6288007A44DB /* CriptoModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -328,6 +336,15 @@
 				55C7E1632B1ACD8F007A44DB /* NftDetailCell.swift */,
 			);
 			path = Cell;
+			sourceTree = "<group>";
+		};
+		55C7E1672B1B5F3A007A44DB /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				55C7E1682B1B5F48007A44DB /* NetworkHandle.swift */,
+				55C7E16A2B1B5F53007A44DB /* Service.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,6 +427,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				554655E22B18D6CC00F440F1 /* User.swift in Sources */,
+				55C7E16D2B1B6288007A44DB /* CriptoModel.swift in Sources */,
 				55C7E1642B1ACD8F007A44DB /* NftDetailCell.swift in Sources */,
 				558CEB412B156A9F009B7EDE /* LoginView.swift in Sources */,
 				558CEB672B157E83009B7EDE /* RegisterViewModel.swift in Sources */,
@@ -426,7 +444,9 @@
 				55A5484C2B16BC0B008ABC4C /* HomeView.swift in Sources */,
 				558CEB502B156F45009B7EDE /* Color+Extension.swift in Sources */,
 				558CEB3F2B156A9F009B7EDE /* MyNFTApp.swift in Sources */,
+				55C7E1692B1B5F48007A44DB /* NetworkHandle.swift in Sources */,
 				554655EA2B18E3D600F440F1 /* AddNftViewModel.swift in Sources */,
+				55C7E16B2B1B5F53007A44DB /* Service.swift in Sources */,
 				554655E62B18D7C600F440F1 /* UserNftModel.swift in Sources */,
 				554655E82B18D8A900F440F1 /* FirestoreManager.swift in Sources */,
 			);
