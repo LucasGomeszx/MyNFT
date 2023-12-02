@@ -39,7 +39,7 @@ struct AddNftView: View {
                     
                 
                 TextField("", text: $viewModel.value, prompt: Text("Digite valor em $:").foregroundStyle(Color.placeholderColor))
-                    .keyboardType(.decimalPad)
+                    .keyboardType(.numbersAndPunctuation)
                     .frame(height: 40)
                     .padding(7)
                     .padding(.leading, 15)

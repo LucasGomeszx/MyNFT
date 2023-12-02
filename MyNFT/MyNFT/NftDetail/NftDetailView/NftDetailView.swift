@@ -41,7 +41,7 @@ struct NftDetailView: View {
                         .padding(.bottom, 10)
                     
                     TextField("", text: $viewModel.userNftState.nftValue )
-                        .keyboardType(.decimalPad)
+                        .keyboardType(.numbersAndPunctuation)
                         .padding(.leading, 10)
                         .font(.system(size: 20))
                         .foregroundColor(.white)
