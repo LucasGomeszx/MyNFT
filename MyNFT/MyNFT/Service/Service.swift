@@ -6,17 +6,23 @@
 //
 
 import Foundation
-
 import Combine
 
-class Service<T: Codable> {
+enum HTTPMethod: String {
+    case get = "GET"
+}
+
+class Service {
     
-    func request(_ request: String) -> AnyPublisher<T, Error> {
+    func request<T: Codable>(_ request: String, method: HTTPMethod, modelType: T.Type) -> AnyPublisher<T, Error> {
         guard let url = URL(string: request) else {
             return Fail(error: NetworkError.invalidURL(url: request)).eraseToAnyPublisher()
         }
 
-        return URLSession.shared.dataTaskPublisher(for: url)
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = method.rawValue
+
+        return URLSession.shared.dataTaskPublisher(for: urlRequest)
             .mapError { error in
                 NetworkError.networkError(error: error)
             }

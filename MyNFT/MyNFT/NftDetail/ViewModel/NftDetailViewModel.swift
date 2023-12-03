@@ -18,7 +18,6 @@ class NftDetailViewModel: ObservableObject {
     @Published var alertErrorMessage: String = ""
     @Published var criptoModel: CriptoModel = CriptoModel(usd: [:])
     @Published var criptoImageNames: [String] = ["btc", "eth", "bnb"]
-    private var service: Service = Service<CriptoModel>()
     private var cancellable: Set<AnyCancellable> = []
     
     init(userNft: UserNftModel) {
@@ -62,20 +61,16 @@ class NftDetailViewModel: ObservableObject {
     }
     
     public func fetchData() {
-        let url = "https://api.coingecko.com/api/v3/simple/price?ids=usd&vs_currencies=btc,eth,bnb"
-        service.request(url)
-            .sink(receiveCompletion: { completion in
-                switch completion {
-                case .finished:
-                    break
-                case .failure(let error):
-                    print(error)
-                }
-            }, receiveValue: { result in
-                self.criptoModel = result
-                print(self.criptoModel)
-            })
-            .store(in: &cancellable)
+        ServiceManager.shered.getCriptoCoins { response in
+            switch response {
+            case .success(let success):
+                self.criptoModel = success
+            case .failure(let failure):
+                self.alertTitle = "RequestError"
+                self.alertErrorMessage = failure.localizedDescription
+                self.isAlertVisible.toggle()
+            }
+        }
     }
     
 }
