@@ -107,7 +107,6 @@ struct FirestoreManager {
         }
     }
 
-    
     func updateNftList(userNft: UserNftModel, completion: @escaping (Result<Void, Error>) -> Void) {
         let userRef = firestore.collection(CollectionKeys.users.rawValue).document(currentUserID)
 
@@ -127,6 +126,5 @@ struct FirestoreManager {
             }
         }
     }
-    
     
 }

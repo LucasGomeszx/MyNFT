@@ -29,14 +29,9 @@ struct RegisterView: View {
             .padding(.bottom, 50)
         }
         .alert(viewModel.title, isPresented: $viewModel.isPresented) {
-            Button("OK") {
-                
-            }
+            Button("OK") {}
         } message: {
             Text(viewModel.message)
-        }
-        .navigationDestination(isPresented: $viewModel.goHome) {
-            
         }
         .environmentObject(viewModel)
         

@@ -53,7 +53,6 @@ struct AddNftView: View {
                     .padding(.leading, 20)
                     .padding(.trailing, 20)
 
-                
                 Spacer()
                 
                 Button {

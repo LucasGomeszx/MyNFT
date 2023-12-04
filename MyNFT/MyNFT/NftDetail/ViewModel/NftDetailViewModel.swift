@@ -18,7 +18,6 @@ class NftDetailViewModel: ObservableObject {
     @Published var alertErrorMessage: String = ""
     @Published var criptoModel: CriptoModel = CriptoModel(usd: [:])
     @Published var criptoImageNames: [String] = ["btc", "eth", "bnb"]
-    private var cancellable: Set<AnyCancellable> = []
     
     init(userNft: UserNftModel) {
         self.userNft = userNft
